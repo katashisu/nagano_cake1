@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :owners
-  devise_for :customers
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :customers, controllers: {
+    registrations: 'customers/registrations',
+    passwords: 'customers/passwords',
+    sessions: 'customers/sessions'}
+
+    devise_for :owners, controllers: {
+      registrations: 'owners/registrations',
+      passwords: 'owners/passwords',
+      sessions: 'owners/sessions'
+  }
 
   #EC
   namespace :public do
