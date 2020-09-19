@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :public do
     root to: 'homes#top'
     get 'homes/about' => 'homes#about'
+    resources :items, only: [:index, :show]
     resource :customers, only: [:show, :edit, :update]
       get 'customers/exit' => 'customers#exit'
       patch 'customers/withdraw' => 'customers#withdraw'
