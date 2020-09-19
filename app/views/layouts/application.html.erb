@@ -10,6 +10,19 @@
   </head>
 
   <body>
+  <header>
+  <nav>
+    <ul>
+      <% if customer_signed_in? %>
+        <li>会員</li>
+        <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
+      <% elsif owner_signed_in? %>
+        <li>管理者</li>
+        <li><%= link_to "ログアウト", destroy_owner_session_path, method: :delete %></li>
+      <% end %>
+    </ul>
+  </nav>
+  </header>
     <%= yield %>
   </body>
 </html>
