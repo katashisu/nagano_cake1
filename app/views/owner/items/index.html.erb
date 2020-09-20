@@ -1,0 +1,47 @@
+<table class="table">
+
+	<thead>
+		<tr>
+			<th>商品ID</th>
+			<th>商品名</th>
+			<th>税抜き価格</th>
+			<th>ジャンル</th>
+			<th>ステータス</th>
+		</tr>
+	</thead>
+
+	<tbody>
+
+		<% @items.each do |item| %>
+
+			<tr>
+
+				<td>
+					<%= item.id %>	<!-- 商品ID -->
+				</td>
+
+				<td>
+					<%= link_to owner_item_path(item) do %>
+						<%= item.name %>	<!-- 商品名 -->
+					<% end %>
+				</td>
+
+				<td>
+					<%= item.price %>	<!-- 税抜き価格 -->
+				</td>
+
+				<td>
+					<%= item.genre.name %>	<!-- ジャンル名 -->
+				</td>
+
+				<td>
+					<%= item.is_active == true ? "販売中" : "売り切れ" %>	<!--trueで販売中、falseで販売停止-->
+				</td>
+
+			</tr>
+
+		<% end %>
+
+	</tbody>
+
+</table>
