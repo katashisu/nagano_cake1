@@ -1,1 +1,13 @@
-注文履歴一覧
+<h3>注文履歴一覧</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>購入日時</th>
+      <th>購入者</th>
+      <th>注文個数</th>
+      <th>注文ステータ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @orders.each do |order| %>

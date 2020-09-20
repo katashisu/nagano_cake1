@@ -1,27 +1,8 @@
-<h2>管理者ログイン画面</h2>
+<p>ようこそ、NaganoCakeへ！<br>
+このサイトでは、ケーキ販売のECサイトになります。<br>
+会員でない方も商品の閲覧はできますが、<br>
+購入には会員登録が必要になります。</p>
 
-<%= form_for(resource, as: resource_name, url: new_owner_session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
+<h1>オススメ商品</h1>
 
 
