@@ -1,0 +1,15 @@
+<div class="container">
+  <p>配送先編集</p>
+  <%= form_for(@delivery, url: {controller: 'deliveries', action: 'update'}) do |f| %>
+    <%= f.label :郵便番号（ハイフンなし） %>
+    <%= f.text_field :postal_code, class: '' %>
+
+    <%= f.label :住所 %>
+    <%= f.text_field :address, class: ''%>
+
+    <%= f.label :宛名 %>
+    <%= f.text_field :name, class: ''%>
+
+    <%= f.submit "編集する", class: ''%>
+  <% end %>
+</div>
