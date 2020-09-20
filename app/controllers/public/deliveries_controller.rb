@@ -14,7 +14,8 @@ class Public::DeliveriesController < ApplicationController
     if @delivery.save(delivery_params)
       redirect_to public_deliveries_path
     else
-      render action: :index
+      @customer = current_customer
+      render :index
     end
   end
 
@@ -24,8 +25,12 @@ class Public::DeliveriesController < ApplicationController
 
   def update
     @delivery = Delivery.find(params[:id])
-    @delivery.update(delivery_params)
+    if @delivery.update(delivery_params)
     redirect_to public_deliveries_path
+    else
+      render :edit
+    end
+
   end
 
   def destroy
