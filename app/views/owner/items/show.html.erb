@@ -1,0 +1,11 @@
+<%= attachment_image_tag @item,:image, :fill,100,100, fallback: "noimage.jpg",size:"500x350" %>
+
+商品名	<%= @item.name %><br>
+商品説明	<%= @item.introduction %><br>
+ジャンル	<%= @item.genre.name %><br>
+税込価格(税抜き価格)  <%= (@item.price*1.1).floor %>(<%= @item.price %>) 円<br> <!--.floorで税込価格の小数点切り捨て-->
+販売ステータス  <%= @item.is_active == true ? "販売中" : "売り切れ" %> <!--trueで販売中、falseで販売停止-->
+
+<div class="btn btn-primary">
+	<%= link_to "編集する", edit_owner_item_path(@item) %>
+</div>

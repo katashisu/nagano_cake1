@@ -1,0 +1,25 @@
+<div class="container">
+  <p>配送先編集</p>
+  <% if @delivery.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+      <h3><%= @delivery.errors.count %>error prohibited this obj from being saved:</h3>
+    <ul>
+        <% @delivery.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <%= form_for(@delivery, url: {controller: 'deliveries', action: 'update'}) do |f| %>
+    <%= f.label :郵便番号（ハイフンなし） %>
+    <%= f.text_field :postal_code, class: '' %>
+
+    <%= f.label :住所 %>
+    <%= f.text_field :address, class: ''%>
+
+    <%= f.label :宛名 %>
+    <%= f.text_field :name, class: ''%>
+
+    <%= f.submit "編集する", class: ''%>
+  <% end %>
+</div>
