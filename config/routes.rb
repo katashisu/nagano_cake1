@@ -17,9 +17,10 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'homes/about' => 'homes#about'
     resources :items, only: [:index, :show]
-    resource :customers, only: [:show, :edit, :update]
+    resource :customers, only: [:edit, :update]
       get 'customers/exit' => 'customers#exit'
       patch 'customers/withdraw' => 'customers#withdraw'
+      get 'customers/my_page' => 'customers#my_page'
     resources :cart_items, only: [:index, :update, :destroy, :create]
       delete 'cart_items/dstroy_all' => 'cart_items#destroy_all'
     resources :orders, only: [:new, :create, :index, :show]
