@@ -1,7 +1,6 @@
 class Public::CartItemsController < ApplicationController
 def index
 	@cart_items = current_customer.cart_items
-	@total_price = @cart_items.sum{|num| num.item.price*num.amount} #税抜き合計金額計算
 end
 
 def create
@@ -18,7 +17,6 @@ def create
 end
 
 def update
-  
 end
 
 def destroy_all
@@ -27,8 +25,10 @@ def destroy_all
 	redirect_to public_cart_items_path
 end
 
-def destory
-  
+def destroy
+  @cart_item = CartItem.find(params[:id])
+  @cart_item.destroy
+  redirect_to public_cart_items_path
 end
 
 private
