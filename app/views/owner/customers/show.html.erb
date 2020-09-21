@@ -1,0 +1,49 @@
+<h3>
+<%= "#{@customer.last_name}#{@customer.first_name}" %>さんの会員詳細
+</h3>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th>顧客ID</th>
+      <td><%= @customer.id %></td>
+
+      <% if @customer.is_deleted == false %>
+      <td>有効会員</td>
+      <% else @customer.is_deleted == true %>
+      <td>無効会員</td>
+      <% end %>
+    </tr>
+    <tr>
+      <th>氏名</th>
+      <td><%= @customer.last_name %>  <%= @customer.first_name %></td>
+    </tr>
+    <tr>
+      <th>フリガナ</th>
+      <td><%= @customer.last_name_kana %>  <%= @customer.first_name_kana %></td>
+    </tr>
+    <tr>
+      <th>郵便番号</th>
+      <td><%= @customer.postal_code %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><%= @customer.phone %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><%= @customer.email %></td>
+    </tr>
+
+  </tbody>
+</table>
+
+    <%= link_to "編集する", edit_owner_customer_path, class: "btn btn-primary" %>
+
+   <%= link_to "注文履歴一覧を見る", public_orders_path, class: "btn btn-primary" %>
+
+

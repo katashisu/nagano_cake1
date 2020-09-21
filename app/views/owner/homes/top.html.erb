@@ -1,0 +1,3 @@
+<p>本日の注文件数<%= link_to owner_orders_path do %>
+        <%= Order.where(created_at:  Time.zone.now.all_day).count %>
+        <% end %>件</p>
