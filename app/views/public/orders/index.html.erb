@@ -12,12 +12,12 @@
     </tr>
   </thead>
   <tbody>
-    <%= @orders.each do |order| %>
+    <% @orders.each do |order| %>
       <tr>
         <td><%= order.created_at.strftime("%Y/%m/%d")%></td>
         <td>
         <%= order.postal_code %><br>
-        <%= order.addrres %><br>
+        <%= order.address %><br>
         <%= order.name %>
         </td>
         <td>
