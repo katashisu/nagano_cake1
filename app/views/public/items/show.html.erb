@@ -1,3 +1,4 @@
+<div class="text-center"><%= flash[:notice] %></div>
 <div class="container">
 	<div class="row">
 
@@ -6,7 +7,7 @@
 		</div>
 
 		<div class="col-xs-3">
-			<div class="item-img">
+			<div>
 				<%= attachment_image_tag @item, :image, :fill,45,45, fallback: "noimage.jpg",size:"300x200" %>
 			</div>
 		</div>
@@ -21,7 +22,7 @@
 
 			<%= f.hidden_field :item_id, :value => @item.id %> <!-- cart_itemにitem_idを送る為 -->
 
-			<%= f.select :amount, [*(1..10)], include_blank:"--選択--"%>
+			<%= f.select :amount, [*(1..30)], include_blank:"--選択--"%>
 
 			<%= f.submit "カートに入れる", class: "btn btn-primary" %>
 
