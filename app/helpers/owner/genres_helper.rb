@@ -1,2 +1,0 @@
-module Owner::GenresHelper
-end
