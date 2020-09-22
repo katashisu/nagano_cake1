@@ -24,9 +24,9 @@ Rails.application.routes.draw do
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all' #変更＋順番変えた
     resources :cart_items, only: [:index, :update, :destroy, :create]
 
+    get 'orders/thanks' => 'orders#thanks'
     resources :orders, only: [:new, :create, :index, :show]
       post 'orders/confirm' => 'orders#confirm'
-      get 'orders/thanks' => 'orders#thanks'
     resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
   end
 
