@@ -15,3 +15,19 @@
  */
 @import "bootstrap-sprockets";  /*ここを追加*/
 @import "bootstrap";            /*ここを追加*/
+
+.box{
+	float: left;
+	margin-right: 30px;
+	margin-bottom: 30px;
+}
+
+.container{
+	width: 100%;
+}
+
+// カート内商品表示
+
+.destroy_all{
+	margin-right: 65px;
+}
