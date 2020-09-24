@@ -5,15 +5,15 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     case resource
     when Owner
-      owner_homes_top_path
+       owner_homes_top_path
     when Customer
-      public_items_path
+       public_items_path
     end
   end
 
   def after_sign_out_path_for(resource_or_scope)
     if resource_or_scope == :owner
-      owner_homes_top_path
+      new_owner_session_path
     elsif resource_or_scope == :customer
       public_root_path
     end
