@@ -2,7 +2,7 @@
 
 <table class="table">
   <thead>
-    <tr>
+    <tr class="active">
       <th>購入日時</th>
       <th>購入者</th>
       <th>注文個数</th>
@@ -10,12 +10,16 @@
     </tr>
   </thead>
     <tbody>
-    <%= @orders.each do |order| %>
+    <% @orders.each do |order| %>
 
     <tr>
-      <td><%= link_to order.created_at, owner_orders_path %></td>
-      <td><%= order.customer.full_name %></td>
-      <td><%= order.amount %></td>
+      <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), owner_order_path(order) %></td>
+      <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
+      <td>
+      <% order.order_items.each do |order_item| %>
+        <%= order_item.amount %>
+      <% end %>
+      </td>
       <td><%= order.order_status %></td>
     </tr>
     <% end %>
