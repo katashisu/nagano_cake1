@@ -16,9 +16,8 @@
       <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), owner_order_path(order) %></td>
       <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
       <td>
-      <% order.order_items.each do |order_item| %>
-        <%= order_item.amount %>
-      <% end %>
+        <%= order.order_items.sum(:amount) %>
+
       </td>
       <td><%= order.order_status %></td>
     </tr>
