@@ -16,14 +16,16 @@ Rails.application.routes.draw do
   namespace :public do
     root to: 'homes#top'
     get 'homes/about' => 'homes#about'
+    get 'items/genre_search' => 'items#genre_search' #追加
     resources :items, only: [:index, :show]
-    resource :customers, only: [:show, :edit, :update]
+
       get 'customers/exit' => 'customers#exit'
       patch 'customers/withdraw' => 'customers#withdraw'
+      get 'customers/my_page' => 'customers#my_page'
+      resource :customers, only: [:edit, :update]
 
-    delete 'cart_items/destroy_all' => 'cart_items#destroy_all' #変更＋順番変えた
     resources :cart_items, only: [:index, :update, :destroy, :create]
-
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     get 'orders/thanks' => 'orders#thanks'
     resources :orders, only: [:new, :create, :index, :show]
       post 'orders/confirm' => 'orders#confirm'
@@ -37,7 +39,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:index, :show, :update]
-    resource :order_items, only: [:update]
+    resources :order_items, only: [:update]
   end
 
 end
