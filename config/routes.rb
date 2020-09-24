@@ -19,13 +19,13 @@ Rails.application.routes.draw do
     get 'items/genre_search' => 'items#genre_search' #追加
     resources :items, only: [:index, :show]
 
-    resource :customers, only: [:show, :edit, :update]
       get 'customers/exit' => 'customers#exit'
       patch 'customers/withdraw' => 'customers#withdraw'
+      get 'customers/my_page' => 'customers#my_page'
+      resource :customers, only: [:edit, :update]
 
-    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]
-
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     get 'orders/thanks' => 'orders#thanks'
     resources :orders, only: [:new, :create, :index, :show]
       post 'orders/confirm' => 'orders#confirm'

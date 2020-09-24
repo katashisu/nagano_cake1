@@ -1,10 +1,15 @@
 class Public::OrdersController < ApplicationController
 
   def new
-    @order = Order.new
-    @customer = Customer.find(current_customer.id)
-    @deliveries = current_customer.deliveries.all
-
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+    if @cart_items.empty?
+      flash[:notice] = "カートが空です！"
+      redirect_to public_cart_items_path
+    else
+      @order = Order.new
+      @customer = Customer.find(current_customer.id)
+      @deliveries = current_customer.deliveries.all
+    end
   end
 
   def confirm
@@ -20,12 +25,19 @@ class Public::OrdersController < ApplicationController
       session[:order]["address"] = delivery.address
       session[:order]["name"] = delivery.name
     else
-      delivery = Delivery.new(delivery_params)
-      delivery.customer_id = current_customer.id
-      delivery.save
-      session[:order]["postal_code"] = delivery.postal_code
-      session[:order]["address"] = delivery.address
-      session[:order]["name"] = delivery.name
+      session[:order]["postal_code"] = params[:order][:postal_code]
+      session[:order]["address"] = params[:order][:address]
+      session[:order]["name"] = params[:order][:name]
+      if session[:order]["postal_code"].empty?
+          flash[:notice] = '新しいお届け先を入力してください'
+          redirect_to new_public_order_path
+      elsif session[:order]["address"].empty?
+          flash[:notice] = '新しいお届け先を入力してください'
+          redirect_to new_public_order_path
+      elsif session[:order]["name"].empty?
+          flash[:notice] = '新しいお届け先を入力してください'
+          redirect_to new_public_order_path
+      end
     end
     session[:order]["shipping_cost"] = 800
     session[:order]["payment_method"] = order_params[:payment_method]
@@ -63,7 +75,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def thanks
-    
+
   end
 
   def index
@@ -79,8 +91,4 @@ class Public::OrdersController < ApplicationController
     params.require(:order).permit(:postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :customer_id)
   end
 
-  def delivery_params
-    params.require(:delivery).permit(:postal_code, :address, :name, :customer_id)
-  end
- 
 end
