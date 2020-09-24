@@ -1,70 +1,74 @@
 <h3>注文履歴詳細</h3>
 
-<table class="table">
-  <thead>
+<table>
     <tr>
       <th>購入者</th>
-      <td><%= link_to customer.full_name, owner_customer_path(customer) %></td>
+      <td><%= link_to owner_customer_path(@order.customer.id) do %>
+        <%= @order.customer.last_name %><%= @order.customer.first_name %>
+      <% end %>
+      </td>
+    </tr>
+    <tr>
       <th>配送先</th>
-      <td><%= order.postal_code.address. %></td>
-      <td><%= order.full_name %></td>
+      <td>
+        <%= @order.postal_code %><%= @order.address %><br>
+      <%= @order.name %>
+      </td>
+    </tr>
+    <tr>
       <th>支払方法</th>
-      <td><%= order.payment_method %></td>
+      <td><%= @order.payment_method %></td>
+    </tr>
+    <tr>
       <th>注文ステータス</th>
       <td>
-      	<%= form_for @order, url: owner_order_path(@order) do |f| %>
-      	<%= f.select :order_status,[["入金待ち","0"],["入金確認","1"],["作成中","2"],["発送準備中","3"],["発送済み","4"]] %>
+        <%= form_for @order, url: owner_order_path(@order) do |f| %>
+      	<%= f.select :order_status,[["入金待ち","入金待ち"],["入金確認","入金確認"],["作成中","作成中"],["発送準備中","発送準備中"],["発送済み","発送済み"]] %>
       <%= f.submit '更新', class: "btn btn-primary" %>
       <% end %>
       </td>
     </tr>
-  </thead>
 </table>
 
 <table class="table">
   <thead>
-  	<tr>
+  	<tr class="active">
   	  <th>商品名</th>
   	  <th>単価（税込）</th>
   	  <th>数量</th>
   	  <th>小計</th>
   	  <th>製作ステータス</th>
-  	  <th></th>
   	</tr>
   </thead>
-  	  <%= @order_items.each do |order_item| %>
+  	  <% @order_items.each do |order_item| %>
   	    <tbody>
   	      <tr>
   	        <td><%= order_item.item.name %></td>
-  	        <td><%= order_item.item.price %></td>
+  	        <td><%= (order_item.item.price*1.1).floor %></td>
   	        <td><%= order_item.amount %></td>
-  	        <td><%= ></td>
-      	<%= form_for @order_items, url: item_status_update_path(order_item) do |f| %>
-      	<%= f.select :order_status,[["着手不可","0"],["製作待ち","1"],["製作中","2"],["製作完了","3"]] %>
-      <%= f.submit '更新', class: "btn btn-primary" %>
+            <td><%= order_item.amount*(order_item.item.price*1.1).floor %></td>
+  	        <td>
+      	    <%= form_for order_item, url: owner_order_item_path(order_item) do |f| %>
+      	    <%= f.select :making_status,[["着手不可","着手不可"],["製作待ち","製作待ち"],["製作中","製作中"],["製作完了","製作完了"]] %>
+           <%= f.submit '更新', class: "btn btn-primary" %>
+            <% end %>
+            </td>
           </tr>
         </tbody>
          <% end %>
   </table>
-
   <table>
-    <tbody>
     <tr>
       <th>商品合計</th>
-        <td><%= sum %></td>
+        <td><%= @order.total_payment-@order.shipping_cost %></td>
+    </tr>
+    <tr>
       <th>送料</th>
         <td><%= @order.shipping_cost %></td>
-      <th>請求額</th>
-        <td><%=  sum+@order.shipping_cost %></td>
     </tr>
-    </tbody>
+    <tr>
+      <th>請求額</th>
+        <td><%=  @order.total_payment %></td>
+    </tr>
   </table>
-
-
-
-
-
-
-
-
 
