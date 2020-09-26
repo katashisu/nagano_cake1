@@ -13,6 +13,12 @@ class Owner::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
+    # order_statusが入金確認ならば、紐づくmaking_statusを製作待ちへ自動更新
+    if @order.order_status == "入金確認"
+       @order.order_items.each do |order_item|
+       order_item.update(making_status:"製作待ち" )
+       end
+    end
     redirect_to owner_order_path(@order.id)
   end
 
