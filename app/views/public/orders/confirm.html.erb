@@ -4,7 +4,7 @@
   <thead class="">
     <tr>
       <th>商品名</th>
-      <th>単価</th>
+      <th>単価(税込)</th>
       <th>数量</th>
       <th>小計</th>
     </tr>
@@ -16,7 +16,7 @@
     <% if cart.customer_id == current_customer.id %>
     <tr>
       <td>
-        <%= attachment_image_tag(cart.item, :image, fallback: "noimage.jpg", size: '60x20') %>
+        <%= attachment_image_tag(cart.item, :image, fallback: "noimage.jpg", size: '100x60') %>
         <%= cart.item.name %>
       </td>
       <td>
@@ -38,7 +38,7 @@
 <table>
   <tr>
     <th>送料</th>
-    <td><%= @order.shipping_cost %></td>
+    <td><%= @order["shipping_cost"] %></td>
   </tr>
   <tr>
     <th>商品合計</th>
@@ -46,7 +46,7 @@
   </tr>
   <tr>
     <th>請求金額</th>
-    <td><%= @order.total_payment = @order.shipping_cost + @sum_price %></td>
+    <td><%= @order.total_payment = @order["shipping_cost"] + @sum_price %></td>
   </tr>
 </table>
 
