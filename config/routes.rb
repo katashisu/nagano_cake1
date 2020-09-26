@@ -24,11 +24,12 @@ Rails.application.routes.draw do
       get 'customers/my_page' => 'customers#my_page'
       resource :customers, only: [:edit, :update]
 
+      delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]
-    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     get 'orders/thanks' => 'orders#thanks'
     resources :orders, only: [:new, :create, :index, :show]
-      post 'orders/confirm' => 'orders#confirm'
+      post 'orders/create_session' => 'orders#create_session'
+      get 'order/confirm' => 'orders#confirm'
     resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
   end
 

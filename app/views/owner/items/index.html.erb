@@ -1,3 +1,5 @@
+<div class="text-right"><%= link_to "新規投稿ボタン", new_owner_item_path %></div><!-- 新規投稿ボタン -->
+
 <table class="table">
 
 	<thead>
@@ -45,3 +47,7 @@
 	</tbody>
 
 </table>
+
+<div class="text-center">
+	<%= paginate @items %>
+</div>
