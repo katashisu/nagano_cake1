@@ -16,6 +16,16 @@
 @import "bootstrap-sprockets";  /*ここを追加*/
 @import "bootstrap";            /*ここを追加*/
 
+//会員トップページ
+.recommended_box{
+	float: left;
+}
+
+.recommended_img{
+	margin-right: 5px;
+}
+
+//会員の商品一覧ページ
 .box{
 	float: left;
 	margin-right: 30px;
@@ -27,7 +37,6 @@
 }
 
 // カート内商品表示
-
 .destroy_all{
 	margin-right: 65px;
 }
