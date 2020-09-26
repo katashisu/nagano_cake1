@@ -2,7 +2,7 @@
 		<%= flash[:notice] %>
 
 <h4>支払方法</h4>
-  <%= form_with(model: @order, local: true, url: public_orders_confirm_path, method: :post) do |f| %>
+  <%= form_with(model: @order, local: true, url: public_orders_create_session_path, method: :post) do |f| %>
 
   <%= f.radio_button :payment_method, :クレジットカード ,checked: "checked" %>クレジットカード<br>
   <%= f.radio_button :payment_method, :銀行振込 %>銀行振込

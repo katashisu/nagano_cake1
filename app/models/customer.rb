@@ -21,4 +21,8 @@ class Customer < ApplicationRecord
   validates :address, presence: true
   validates :phone, presence: true, format: { with: /\A\d{10,11}\z/, message: 'ハイフンなしで入力してください。'}
 
+  def cart_item_total
+    cart_items.joins(:item).sum("items.price*amount*1.1").floor
+  end
+
 end
