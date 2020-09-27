@@ -5,16 +5,16 @@
 	</div>
 
 <div class="row">
-		    <%= link_to "編集する", edit_customer_registration_path, class:"btn btn-primary" %>
-		  </div>
-		  
-		  <div class="row">
-				<%= link_to "パスワードを変更する", public_customers_password_reset_path, class:"btn btn-primary" %>
-	   </div>
-	   
-	<div class="row">
-	  <div class="offset-sm-4 col-sm-4">
-	    <table class="table table-borderless table-hover">
+	<%= link_to "編集する", edit_customer_registration_path, class:"btn btn-primary" %>
+</div>
+
+<div class="row">
+	<%= link_to "パスワードを変更する", public_customers_password_reset_path, class:"btn btn-primary" %>
+</div>
+
+<div class="row">
+	<div class="offset-sm-4 col-sm-4">
+		<table class="table table-borderless table-hover">
 	      <tr class="brown-border">
 		    	<td>氏名</td>
 		    	<td>
@@ -52,18 +52,16 @@
 	      </tr>
 	    </table>
 
-	 </div>
+	</div>
 
-		<div class="offset-sm-1 col-sm-3">
-			<div class="row">
-				<td>配送先</td>
-		 		<%= link_to "一覧を見る", public_deliveries_path, class: "btn btn-primary btn-outline-danger my-1" %>
-		 	</div>
-		 	<div class="row">
-		 		<td>注文</td>
-				<%= link_to "一覧を見る", owner_orders_path, class: "btn btn-primary btn-outline-danger my-1" %>
-
-
-			</div>
+	<div class="offset-sm-1 col-sm-3">
+		<div class="row">
+			<td>配送先</td>
+			<%= link_to "一覧を見る", public_deliveries_path, class: "btn btn-primary btn-outline-danger my-1" %>
+		</div>
+		<div class="row">
+			<td>注文</td>
+			<%= link_to "一覧を見る", public_orders_path, class: "btn btn-primary btn-outline-danger my-1" %>
+		</div>
 	</div>
 </div>
