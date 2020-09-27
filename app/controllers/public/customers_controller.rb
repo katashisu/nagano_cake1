@@ -24,5 +24,9 @@ def withdraw
   redirect_to public_root_path
 end
 
+def password
+	
+end
+
 
 end
