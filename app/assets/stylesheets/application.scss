@@ -15,6 +15,7 @@
  */
 @import "bootstrap-sprockets";  /*ここを追加*/
 @import "bootstrap";            /*ここを追加*/
+@import "bulma";
 
 //会員トップページ
 .recommended_box{
@@ -47,4 +48,31 @@ footer {
   text-align: center;
   line-height: 120px;
   background-color: #848282;
+}
+
+.notification:not(:last-child){
+ 	margin-bottom:  0;
+ }
+
+ .profile_image {
+ 	border-radius:  50%;
+ }
+
+ .main-image {
+ 	height: 940px;
+ 	background-image: url(meal.png);
+ 	background-repeat: none;
+ 	background-size: contain;
+ }
+
+.navbar-right {
+	height: 40px;
+}
+.navbar-items{
+	display: flex;
+	margin-left: 350px;
+}
+.navbar-itemss {
+	display: flex;
+	margin-left: 525px;
 }
