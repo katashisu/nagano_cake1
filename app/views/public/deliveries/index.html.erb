@@ -1,9 +1,8 @@
 <div class="container">
   <p>配送先登録 / 一覧</p>
 
+  <%= form_for(@delivery, url: {controller: 'deliveries', action: 'index'}) do |f| %>
   <table>
-    <%= form_for(@delivery, url: {controller: 'deliveries', action: 'index'}) do |f| %>
-
       <% if @delivery.errors.any? %>
         <div id="error_explanation" class="alert alert-danger">
             <h3><%= @delivery.errors.count %>error prohibited this obj from being saved:</h3>
@@ -46,7 +45,7 @@
         <td><%= delivery.name %></td>
         <td>
           <%= link_to '編集する', edit_public_delivery_path(delivery.id), class:"btn btn-primary" %>　
-          <%= link_to '削除する', public_delivery_path(delivery.id), method: :delete, "data-confirm" => "本当に消しますか?", class:"btn-sm btn-danger" %>
+          <%= link_to '削除する', public_delivery_path(delivery.id), method: :delete, "data-confirm" => "本当に消しますか?", class:"btn btn-danger" %>
         </td>
       <% end %>
       </tr>

@@ -28,6 +28,7 @@ class Public::OrdersController < ApplicationController
         redirect_to new_public_order_path and return
       else
         delivery = Delivery.find(params[:order][:delivery])
+        binding.pry
         session[:order]["postal_code"] = delivery.postal_code
         session[:order]["address"] = delivery.address
         session[:order]["name"] = delivery.name
@@ -46,6 +47,13 @@ class Public::OrdersController < ApplicationController
           flash[:notice] = '新しいお届け先を入力してください'
           redirect_to new_public_order_path and return
       end
+      delivery = Delivery.new(
+        postal_code: params[:order][:postal_code],
+        address: params[:order][:address],
+        name: params[:order][:name],
+        customer_id: current_customer.id
+        )
+        delivery.save
     end
     session[:order]["shipping_cost"] = 800
     session[:order]["payment_method"] = order_params[:payment_method]
