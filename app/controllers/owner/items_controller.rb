@@ -1,4 +1,7 @@
 class Owner::ItemsController < ApplicationController
+
+    before_action :authenticate_owner!
+
   def index
     @items = Item.all.page(params[:page]).per(10)
   end
@@ -13,7 +16,7 @@ class Owner::ItemsController < ApplicationController
     if @item.save
       redirect_to owner_item_path(@item.id)
     else
-      redirect_to new_owner_item_path
+      render :new
     end
 
   end
@@ -31,7 +34,8 @@ class Owner::ItemsController < ApplicationController
 
     if @item.update(item_params)
     redirect_to owner_item_path(@item)
-    else redirect_to edit_owner_item_path(@item) #空欄があればeditに戻す
+    else
+      render :edit
     end
 
   end

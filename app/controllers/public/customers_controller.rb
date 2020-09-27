@@ -1,16 +1,24 @@
 class Public::CustomersController < ApplicationController
 
+	before_action :authenticate_customer!
+
 def show
   
 end
 
-def edit
+# def edit
   
-end
+# end
 
-def update
-  
-end
+# def update
+#   # @customer = Customer.current_customer
+#   # if @customer.update
+#   # 	redirect_to public_customers_my_page_path
+#   # else
+#   # 	render :edit
+#   # end
+
+# end
 
 def exit
   
