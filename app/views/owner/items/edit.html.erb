@@ -1,3 +1,5 @@
+<h4>商品編集<h4>
+
 <%=form_for(@item, url:owner_item_path(@item),method: :patch) do |f| %>
 
 	<%= f.attachment_field :image %>
@@ -16,7 +18,7 @@
 	<%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank:"--選択してください--" %>
 
 	<div class="form_group">
-		<%= f.label :price, "税抜き価格" %>
+		<%= f.label :price, "税抜価格" %>
 		<%= f.text_field :price %> 円
 	</div>
 
