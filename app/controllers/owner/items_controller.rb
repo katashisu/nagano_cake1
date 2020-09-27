@@ -1,6 +1,6 @@
 class Owner::ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items = Item.all.page(params[:page]).per(10)
   end
 
   def new
@@ -11,7 +11,7 @@ class Owner::ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      redirect_to owner_items_path
+      redirect_to owner_item_path(@item.id)
     else
       redirect_to new_owner_item_path
     end
