@@ -1,18 +1,19 @@
 <div class="container">
-  <h4>配送先編集</h4>
-      <% if @delivery.errors.any? %>
-        <div id="error_explanation" class="alert alert-danger">
-            <h3><%= @delivery.errors.count %>error prohibited this obj from being saved:</h3>
-          <ul>
-              <% @delivery.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-              <% end %>
-          </ul>
-        </div>
-      <% end %>
+  <p>配送先編集</p>
+  <% if @delivery.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+      <h3><%= @delivery.errors.count %>error prohibited this obj from being saved:</h3>
+    <ul>
+        <% @delivery.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+<%= form_for(@delivery, url: {controller: 'deliveries', action: 'update'}) do |f| %>
   <table class="">
     <tr>
-    <%= form_for(@delivery, url: {controller: 'deliveries', action: 'update'}) do |f| %>
       <th><%= f.label :郵便番号（ハイフンなし） %></th>
       <td><%= f.text_field :postal_code, class: '' %></td>
     </tr>
@@ -24,8 +25,10 @@
       <th><%= f.label :宛名 %></th>
       <td><%= f.text_field :name, class: ''%></td>
     </tr>
-  </table>
-    <%= f.submit "編集する", class: 'btn btn-primary'%>
-  <% end %>
+    <tr>
+      <th><%= f.submit "編集する", class:"btn btn-primary" %></th>
+    </tr>
+  <table>
+<% end %>
 
 </div>
