@@ -1,13 +1,35 @@
-<h4>商品詳細<h4>
+<div class="container">
 
-<%= attachment_image_tag @item,:image, :fill,100,100, fallback: "noimage.jpg",size:"500x350" %>
+	<div class="row">
 
-商品名	<%= @item.name %><br>
-商品説明	<%= @item.introduction %><br>
-ジャンル	<%= @item.genre.name %><br>
-税込価格(税抜価格)  <%= (@item.price*1.1).floor %>(<%= @item.price %>) 円<br> <!--.floorで税込価格の小数点切り捨て-->
-販売ステータス  <%= @item.is_active == true ? "販売中" : "売り切れ" %> <!--trueで販売中、falseで販売停止-->
+		<div class="main_show">
 
-<div class="">
-	<%= link_to "編集する", edit_owner_item_path(@item), class:"btn btn-primary" %>
+			<h4 style=" position: fixed; margin-left: 260px; top: 85px; padding: 0 7px;background-color: #d3d3d3">商品詳細</h4>
+
+			<div class="col-md-5">
+
+				<span style="margin-left: 75px"><%= attachment_image_tag @item,:image, :fill,100,100, fallback: "noimage.jpg",size:"450x300" %></span>
+
+			</div>
+
+			<div class="col-md-7">
+
+				<div class="owner_item_show_text">商品名	<%= @item.name %></div>
+				<div class="owner_item_show_text">商品説明	<%= @item.introduction %></div>
+				<div class="owner_item_show_text">ジャンル	<%= @item.genre.name %></div>
+				<div class="owner_item_show_text">税込価格(税抜価格)  <%= (@item.price*1.1).floor %>(<%= @item.price %>) 円</div>
+				<!--.floorで税込価格の小数点切り捨て-->
+
+				<div class="owner_item_show_text">販売ステータス  <%= @item.is_active == true ? "販売中" : "売り切れ" %></div>
+				<!--trueで販売中、falseで販売停止-->
+
+				<div class="edit_button">
+					<%= link_to "編集する", edit_owner_item_path(@item), class:"btn btn-primary" %>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
 </div>
