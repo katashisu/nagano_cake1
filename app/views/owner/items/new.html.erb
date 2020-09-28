@@ -1,3 +1,15 @@
+<% if @item.errors.any? %>
+
+    <%= @item.errors.count %>errors prohibited this obj from being saved:
+
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+
+<% end %>
+
 <h1>商品新規登録</h1>
 
 <%= form_for(@item, url:owner_items_path,method: :post) do |f| %>

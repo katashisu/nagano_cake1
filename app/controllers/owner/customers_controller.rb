@@ -1,4 +1,7 @@
 class Owner::CustomersController < ApplicationController
+
+    before_action :authenticate_owner!
+
   def index
     @customers = Customer.all.page(params[:page])
   end
