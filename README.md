@@ -7,7 +7,7 @@
 ```
 $ git clone https://github.com/katashisu/nagano_cake1.git
 
-$ cd nagano-cake
+$ cd nagano_cake1
 
 $ rails db:seed
 
@@ -18,7 +18,7 @@ $ rails s -b 0.0.0.0
 メールアドレス：owner-test@mail<br>
 パスワード：owner-test
 
-会員サイトへのアクセスは[こちら](http://localhost:3000/customers/sign_in)から。
+会員サイトへのアクセスは[こちら](http://localhost:3000/customers/sign_up)から。
 
 # 実装機能
 
