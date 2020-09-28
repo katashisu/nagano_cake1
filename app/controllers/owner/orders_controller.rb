@@ -1,8 +1,10 @@
 class Owner::OrdersController < ApplicationController
 
+    before_action :authenticate_owner!
+
   def index
-    @orders = Order.all.includes(:customers)
-    @orders = Order.page(params[:page])
+    @orders = Order.all.order(id: "DESC").page(params[:page])
+    #.includes(:customers)
   end
 
   def show

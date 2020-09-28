@@ -1,6 +1,10 @@
 class Public::CartItemsController < ApplicationController
+
+	before_action :authenticate_customer!
+
 def index
 	@cart_items = current_customer.cart_items
+	@all_total_price = @cart_items.sum{|num| (num.item.price*1.1).floor*num.amount} #カート内合計金額
 end
 
 def create

@@ -1,6 +1,7 @@
 <div class="container">
 
 	<div class="row">
+		<%= flash[:notice] %>
 
 		<div class="col-xs-3">
 			<%= render 'owner/genres/genre_search', genres: @genres %>
@@ -16,6 +17,31 @@
 			</p>
 
 			<h1>オススメ商品</h1>
+
+			<% @recommended_items.each do |recommended_item| %>
+
+				<div class="recommended_box">
+
+					<div class="recommended_img">
+						<%= link_to public_item_path(recommended_item.id) do %>
+							<%= attachment_image_tag recommended_item, :image, :fill,45,45, fallback: "noimage.jpg",size:"200x130" %>
+						<% end %>
+					</div>
+
+					<div>
+						<%= recommended_item.name %>
+					</div>
+
+					<div>
+						¥<%= (recommended_item.price*1.1).floor %>
+					</div>
+
+				</div>
+
+			<% end %>
+			<div class="col-xs-offset-8 col-xs-4">
+				<%= link_to "もっと見る>>", public_items_path %>
+			</div>
 
 		</div>
 

@@ -11,24 +11,23 @@ Rails.application.routes.draw do
       passwords: 'owners/passwords',
       sessions: 'owners/sessions'
   }
-
   #EC
   namespace :public do
     root to: 'homes#top'
     get 'homes/about' => 'homes#about'
     get 'items/genre_search' => 'items#genre_search' #追加
     resources :items, only: [:index, :show]
-
+      get 'customers/password_reset' => 'customers#password'
       get 'customers/exit' => 'customers#exit'
       patch 'customers/withdraw' => 'customers#withdraw'
       get 'customers/my_page' => 'customers#my_page'
       resource :customers, only: [:edit, :update]
-
+      delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]
-    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     get 'orders/thanks' => 'orders#thanks'
     resources :orders, only: [:new, :create, :index, :show]
-      post 'orders/confirm' => 'orders#confirm'
+      post 'orders/create_session' => 'orders#create_session'
+      get 'order/confirm' => 'orders#confirm'
     resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
   end
 

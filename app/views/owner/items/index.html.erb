@@ -1,10 +1,12 @@
+<div class="text-right"><%= link_to "新規投稿ボタン", new_owner_item_path %></div><!-- 新規投稿ボタン -->
+
 <table class="table">
 
 	<thead>
 		<tr>
 			<th>商品ID</th>
 			<th>商品名</th>
-			<th>税抜き価格</th>
+			<th>税抜価格</th>
 			<th>ジャンル</th>
 			<th>ステータス</th>
 		</tr>
@@ -27,7 +29,7 @@
 				</td>
 
 				<td>
-					<%= item.price %>	<!-- 税抜き価格 -->
+					<%= item.price %>	<!-- 税抜価格 -->
 				</td>
 
 				<td>
@@ -45,3 +47,7 @@
 	</tbody>
 
 </table>
+
+<div class="text-center">
+	<%= paginate @items %>
+</div>

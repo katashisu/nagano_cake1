@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :correct_customer, only: [:show, :edit, :update, :destroy]
 
   def new
     @cart_items = CartItem.where(customer_id: current_customer.id)
@@ -12,7 +14,7 @@ class Public::OrdersController < ApplicationController
     end
   end
 
-  def confirm
+  def create_session
     session[:order] = Order.new(order_params)
     session[:order]["customer_id"] = current_customer.id
     if params[:order]["selected_address"].to_i == 1
@@ -20,33 +22,48 @@ class Public::OrdersController < ApplicationController
       session[:order]["address"] = current_customer.address
       session[:order]["name"] = current_customer.last_name + current_customer.first_name
     elsif params[:order]["selected_address"].to_i == 2
-      delivery = Delivery.find(params[:order][:delivery])
-      session[:order]["postal_code"] = delivery.postal_code
-      session[:order]["address"] = delivery.address
-      session[:order]["name"] = delivery.name
+      @delivery = Delivery.where(customer_id: current_customer.id)
+      if @delivery.empty?
+        flash[:notice] = '新しいお届け先を入力してください'
+        redirect_to new_public_order_path and return
+      else
+        delivery = Delivery.find(params[:order][:delivery])
+        session[:order]["postal_code"] = delivery.postal_code
+        session[:order]["address"] = delivery.address
+        session[:order]["name"] = delivery.name
+      end
     else
       session[:order]["postal_code"] = params[:order][:postal_code]
       session[:order]["address"] = params[:order][:address]
       session[:order]["name"] = params[:order][:name]
       if session[:order]["postal_code"].empty?
           flash[:notice] = '新しいお届け先を入力してください'
-          redirect_to new_public_order_path
+          redirect_to new_public_order_path and return
       elsif session[:order]["address"].empty?
           flash[:notice] = '新しいお届け先を入力してください'
-          redirect_to new_public_order_path
+          redirect_to new_public_order_path and return
       elsif session[:order]["name"].empty?
           flash[:notice] = '新しいお届け先を入力してください'
-          redirect_to new_public_order_path
+          redirect_to new_public_order_path and return
       end
+      delivery = Delivery.new(
+        postal_code: params[:order][:postal_code],
+        address: params[:order][:address],
+        name: params[:order][:name],
+        customer_id: current_customer.id
+        )
+        delivery.save
     end
     session[:order]["shipping_cost"] = 800
     session[:order]["payment_method"] = order_params[:payment_method]
+    redirect_to public_order_confirm_path and return
+  end
 
-    @order = session[:order]
+  def confirm
+    @order = Order.new(session[:order])
+    @total_payment = current_customer.cart_item_total + @order.shipping_cost
     @cart_items = CartItem.all
     @customer_id = current_customer.id
-    @order.shipping_cost = 800
-
   end
 
   def create
@@ -90,5 +107,12 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :customer_id)
   end
+
+  def correct_customer
+    @order = Order.find(params[:id])
+    if current_customer.id != @order.customer_id
+        redirect_to customer_orders_path
+    end
+end
 
 end
