@@ -48,7 +48,7 @@ devies<br>
 refile<br>
 Bootstrap 3.3.6<br>
 jQuery-rails<br>
-kaminari
+kaminari<br>
 Enum
 
 
