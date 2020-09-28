@@ -1,46 +1,62 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>NaganoCake1</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <html>
+    <head>
+      <title>NaganoCake1</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
 
   <body>
-  <header>
-  <nav>
-      <body>
-    <!-- <ul class="navbar-nav mr-auto w-75 nav-justified"> -->
-        <% if owner_signed_in? %>
-          <div class="admin-message">管理者としてログインしています</div>
-          <li class="nav-item"><%= link_to '商品一覧',  owner_items_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to '会員一覧', owner_customers_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to '注文履歴一覧', owner_orders_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'ジャンル一覧', owner_genres_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'ログアウト', destroy_owner_session_path, method: :delete, class: 'nav-link' %></li>
+  <div id="wrapper">
 
+  <header class="container">
+    <nav class="navbar navbar-main" class="navbar navbar-dark" style="background-color:#33ccff;">
+    <div class="fixed-top" >
+      <div class="container">
+      <nav class="nav navbar-nav navbar-left">
+        <h3 class="title is-4" style="font-family: fantasy;">naganocake</h3>
+      </nav>
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
+          <% if owner_signed_in? %>
+            <li class="nav-text"><%= link_to '商品一覧', owner_items_path, class: "navbar-item button is-warning is-light" %></li>
+            <li class=""><%= link_to '会員一覧', owner_customers_path, class: "navbar-item button is-warning is-light" %></li>
+            <li class=""><%= link_to '注文履歴一覧', owner_orders_path, class: " button is-warning is-light" %></li>
+            <li class=""><%= link_to 'ジャンル一覧', owner_genres_path, class: "button is-warning is-light" %></li>
+            <li class=""><%= link_to 'ログアウト', destroy_owner_session_path, method: :delete, class: "button is-warning is-light" %></li>
 
-        <% elsif customer_signed_in? %>
-          <p>ようこそ<%= current_customer.last_name %><%= current_customer.first_name %>さん！</p>
-          <li class="nav-item"><%= link_to 'マイページ', public_items_path(current_customer.id), class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to '商品一覧',  public_orders_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'カート', public_cart_items_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'nav-link' %></li>
+          <% elsif customer_signed_in? %>
+            <li class="">ようこそ<%= current_customer.last_name %><%= current_customer.first_name %>さん！</li>
+            <li class=""><%= link_to 'マイページ', public_customers_my_page_path, class: "navbar-item button is-warning is-light" %></li>
+            <li class=""><%= link_to '商品一覧', public_items_path, class: "navbar-item button is-warning is-light" %></li>
+            <li class=""><%= link_to 'カート', public_cart_items_path, class: "button is-warning is-light" %></li>
+            <li class=""><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "button is-warning is-light" %></li>
 
-        <% else %>
-          <li class="nav-item"><%= link_to 'About', public_homes_about_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to '商品一覧', public_orders_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to '新規登録', new_customer_registration_path, class: 'nav-link' %></li>
-          <li class="nav-item"><%= link_to 'ログイン', new_customer_session_path, class: 'nav-link' %></li>
-        <% end %>
-
-    </ul>
-    </body>
-  </nav>
+          <% else %>
+            <li class=""><%= link_to 'About', public_homes_about_path, class: "navbar-item button is-warning is-light" %></li>
+            <li class=""><%= link_to '商品一覧', public_items_path, class: "navbar-item button is-warning is-light" %></li>
+            <li class=""><%= link_to '新規登録', new_customer_registration_path, class: "button is-warning is-light" %></li>
+            <li class=""><%= link_to 'ログイン', new_customer_session_path, class: "button is-warning is-light" %></li>
+          <% end %>
+        </ul>
+      </nav>
+      </div>
+    </div>
+    </nav>
   </header>
     <%= yield %>
-  </body>
+  <footer>
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-9">
+        <p>CopyRight naganocake</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </div>
+</body>
 </html>

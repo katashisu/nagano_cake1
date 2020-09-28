@@ -1,4 +1,7 @@
 class Owner::CustomersController < ApplicationController
+
+    before_action :authenticate_owner!
+
   def index
     @customers = Customer.all.page(params[:page])
   end
@@ -13,8 +16,13 @@ class Owner::CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params[:id])
-    @customer.update(customer_params)
-    redirect_to owner_customer_path
+    if @customer.update(customer_params)
+       flash[:notice] = "更新が完了しました"
+       redirect_to owner_customer_path
+    else
+    flash[:notice] = "更新に失敗しました"
+    render 'edit'
+    end
   end
 
   private

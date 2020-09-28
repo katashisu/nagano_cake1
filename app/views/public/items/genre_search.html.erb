@@ -7,14 +7,14 @@
 		</div>
 
 		<div class="col-xs-9">
-		<%= flash[:notice] %>
+
 			<h1>
-				商品一覧
+				<%= @genre.name %>一覧
 			</h1>
 
-			<p>(全<%= @items_search.total_count %>件)</p>
+			<p>(全<%= @items.total_count %>件)</p>
 
-			<% @items_search.each do |item| %>
+			<% @items.each do |item| %>
 
 			<div class="box">
 				<div>
@@ -38,6 +38,6 @@
 
 	</div>
 
-	<div class="text-center"><%= paginate @items_search %></div>
+	<div class="text-center"><%= paginate @items %></div>
 
 </div>

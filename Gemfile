@@ -71,6 +71,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 
 gem 'enum_help'
+gem 'rails-i18n'
 
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+
+gem 'pry-rails'

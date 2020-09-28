@@ -15,7 +15,24 @@
  */
 @import "bootstrap-sprockets";  /*ここを追加*/
 @import "bootstrap";            /*ここを追加*/
+// @import "bulma";
 
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+//会員トップページ
+.recommended_box{
+	float: left;
+}
+
+.recommended_img{
+	margin-right: 5px;
+}
+
+//会員の商品一覧ページ
 .box{
 	float: left;
 	margin-right: 30px;
@@ -26,3 +43,73 @@
 	width: 100%;
 }
 
+// カート内商品表示
+.destroy_all{
+	margin-right: 65px;
+}
+// 管理者商品詳細
+
+.main_show{
+	margin-top: 150px;
+}
+
+.owner_item_show_text{
+	margin-bottom: 14px;
+	margin-left: 40px;
+}
+
+.edit_button{
+	position: fixed;
+	bottom: 250px;
+	right: 150px;
+}
+
+footer {
+	background-color: #33ccff;
+	margin-top: auto;
+	width: 100%;
+}
+
+.notification:not(:last-child){
+	margin-bottom:  0;
+}
+
+.profile_image {
+	border-radius:  50%;
+}
+
+.main-image {
+	height: 940px;
+	background-image: url(meal.png);
+	background-repeat: none;
+	background-size: contain;
+}
+
+header .navbar-left span{
+	font-size: 30px;
+  padding: 10px;
+}
+
+.nav-text {
+	text-align: center;
+}
+
+.title {
+	margin-bottom: 20px;
+	margin-left: 50px;
+}
+
+.roww {
+	margin: 2px 0px;
+}
+
+.example {
+width: 100px;
+height: 50px;
+}
+
+body, #wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
