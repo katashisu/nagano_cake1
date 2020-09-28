@@ -49,5 +49,6 @@ refile<br>
 Bootstrap 3.3.6<br>
 jQuery-rails<br>
 kaminari
+Enum
 
 
