@@ -11,6 +11,8 @@
     </head>
 
   <body>
+  <div id="wrapper">
+
   <header class="container">
     <nav class="navbar navbar-main" class="navbar navbar-dark" style="background-color:#33ccff;">
     <div class="fixed-top" >
@@ -45,15 +47,16 @@
       </div>
     </div>
     </nav>
-</header>
-  <%= yield %>
-<footer>
-  <div class="row">
-    <div class="col-xs-3 col-xs-offset-9">
-      <p>CopyRight naganocake</p>
+  </header>
+    <%= yield %>
+  <footer>
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-9">
+        <p>CopyRight naganocake</p>
+        </div>
       </div>
     </div>
+  </footer>
   </div>
-</footer>
 </body>
 </html>
