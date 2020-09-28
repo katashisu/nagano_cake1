@@ -1,72 +1,78 @@
-<h4>購入情報確認</h4>
+<div class="container">
+  <h4>注文情報確認</h4>
 
-<table>
-  <thead class="">
-    <tr>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-    </tr>
-  </thead>
+<div class="col-md-8">
+  <table class="table">
+    <thead>
+      <tr class="active">
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+      </tr>
+    </thead>
 
-  <tbody class="">
-  <% @sum_price = 0 %>
-  <% @cart_items.each do |cart| %>
-    <% if cart.customer_id == current_customer.id %>
-    <tr>
-      <td>
-        <%= attachment_image_tag(cart.item, :image, fallback: "noimage.jpg", size: '100x60') %>
-        <%= cart.item.name %>
-      </td>
-      <td>
-        <% price_include_tax = cart.item.price * 1.1 %>
-        <%= price_include_tax.floor %>
-      </td>
-      <td><%= cart.amount %></td>
-      <td>
-        <% subtotal_price = price_include_tax.floor * cart.amount %>
-        <%= subtotal_price.floor %>
-      </td>
-    </tr>
-    <% @sum_price += subtotal_price.floor %>
+    <tbody class="">
+    <% @sum_price = 0 %>
+    <% @cart_items.each do |cart| %>
+      <% if cart.customer_id == current_customer.id %>
+      <tr>
+        <td>
+          <%= attachment_image_tag(cart.item, :image, fallback: "noimage.jpg", size: '100x60') %>
+          <%= cart.item.name %>
+        </td>
+        <td>
+          <% price_include_tax = cart.item.price * 1.1 %>
+          <%= price_include_tax.floor %>
+        </td>
+        <td><%= cart.amount %></td>
+        <td>
+          <% subtotal_price = price_include_tax.floor * cart.amount %>
+          <%= subtotal_price.floor %>
+        </td>
+      </tr>
+      <% @sum_price += subtotal_price.floor %>
+      <% end %>
     <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="col-md-offset-1 col-md-3">
+  <table class="table">
+    <tr>
+      <th class="active">送料</th>
+      <td><%= @order["shipping_cost"] %></td>
+    </tr>
+    <tr>
+      <th class="active">商品合計</th>
+      <td><%= @sum_price %></td>
+    </tr>
+    <tr>
+      <th class="active">請求金額</th>
+      <td><%= @order.total_payment = @order["shipping_cost"] + @sum_price %></td>
+    </tr>
+  </table>
+</div>
+<div class="col-md-5">
+    <h4>支払い方法</h4>
+    <%= @order.payment_method %>
+
+
+    <h4>お届け先</h4>
+  <%= form_for(@order, url:public_orders_path, method: :post) do |f|%>
+
+    <%= hidden_field_tag :address_select, @address_select %>
+
+    <%= @order.postal_code %> <%= @order.address %><br/>
+    <%= @order.name %><br/>
+
+      <%= f.hidden_field :shipping_cost, value:@order.shipping_cost %>
+      <%= f.hidden_field :payment_method, value:@order.payment_method %>
+      <%= f.hidden_field :postal_code, value:@order.postal_code %>
+      <%= f.hidden_field :address, value:@order.address %>
+      <%= f.hidden_field :name, value:@order.name %>
+      <%= f.hidden_field :total_payment, value:@order.total_payment %>
+      <%= f.submit '購入を確定する', class: "btn btn-success", id:"cart_success_btn" %>
   <% end %>
-  </tbody>
-</table>
-
-<table>
-  <tr>
-    <th>送料</th>
-    <td><%= @order["shipping_cost"] %></td>
-  </tr>
-  <tr>
-    <th>商品合計</th>
-    <td><%= @sum_price %></td>
-  </tr>
-  <tr>
-    <th>請求金額</th>
-    <td><%= @order.total_payment = @order["shipping_cost"] + @sum_price %></td>
-  </tr>
-</table>
-
-  <h4>支払い方法</h4>
-  <%= @order.payment_method %>
-
-
-  <h4>お届け先</h4>
-<%= form_for(@order, url:public_orders_path, method: :post) do |f|%>
-
-  <%= hidden_field_tag :address_select, @address_select %>
-
-  <%= @order.postal_code %> <%= @order.address %><br/>
-  <%= @order.name %><br/>
-
-    <%= f.hidden_field :shipping_cost, value:@order.shipping_cost %>
-    <%= f.hidden_field :payment_method, value:@order.payment_method %>
-    <%= f.hidden_field :postal_code, value:@order.postal_code %>
-    <%= f.hidden_field :address, value:@order.address %>
-    <%= f.hidden_field :name, value:@order.name %>
-    <%= f.hidden_field :total_payment, value:@order.total_payment %>
-    <%= f.submit '購入を確定する', class: "btn btn-success", id:"cart_success_btn" %>
-<% end %>
+</div>
