@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="">注文情報入力</h3>
+  <h3>注文情報入力</h3>
       <%= flash[:notice] %>
 
   <%= form_with(model: @order, local: true, url: public_orders_create_session_path, method: :post) do |f| %>
@@ -21,17 +21,23 @@
         </tr>
 
         <tr>
-          <th class="col-md-2"><%= f.radio_button :selected_address, 2 %>登録済住所から選択<br>
-          <%= f.collection_select(:delivery, current_customer.deliveries.all, :id, :full_delivery) %></th>
+          <td class="col-md-2"><%= f.radio_button :selected_address, 2 %>登録済住所から選択<br>
+          <%= f.collection_select(:delivery, current_customer.deliveries.all, :id, :full_delivery) %></td>
         </tr>
         <tr>
-          <th><%= f.radio_button :selected_address, 3 %>新しいお届け先</th>
-          <td>郵便番号(ハイフンなし)
-          <%= f.text_field :postal_code %></td>
-          <td>住所
-          <%= f.text_field :address %></td>
-          <td>宛名
-          <%= f.text_field :name %></td>
+          <td class="col-md-2"><%= f.radio_button :selected_address, 3 %>新しいお届け先</td>
+        </tr>
+        <tr>
+          <td class="col-md-3">郵便番号(ハイフンなし)</td>
+          <td><%= f.text_field :postal_code %></td>
+        </tr>
+        <tr>
+          <td class="col-md-3">住所</td>
+          <td><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+          <td class="col-md-3">宛名</td>
+          <td><%= f.text_field :name %></td>
         </tr>
     </table>
         <%= f.submit :"確認画面へ進む", class: "btn btn-primary btn-center" %>
