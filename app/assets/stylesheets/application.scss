@@ -15,7 +15,7 @@
  */
 @import "bootstrap-sprockets";  /*ここを追加*/
 @import "bootstrap";            /*ここを追加*/
-@import "bulma";
+// @import "bulma";
 
 //会員トップページ
 .recommended_box{
@@ -41,38 +41,68 @@
 .destroy_all{
 	margin-right: 65px;
 }
+// 管理者商品詳細
+
+.main_show{
+	margin-top: 150px;
+}
+
+.owner_item_show_text{
+	margin-bottom: 14px;
+	margin-left: 40px;
+}
+
+.edit_button{
+	position: fixed;
+	bottom: 250px;
+	right: 150px;
+}
 
 footer {
   width: 100%;
-  height: 120px;
+  height: 70px;
   text-align: center;
-  line-height: 120px;
-  background-color: #848282;
+	line-height: 120px;
+	margin: 10px;
+	background-color: #33ccff;
+	position: absolute;
+	bottom: 0;
 }
 
 .notification:not(:last-child){
- 	margin-bottom:  0;
- }
-
- .profile_image {
- 	border-radius:  50%;
- }
-
- .main-image {
- 	height: 940px;
- 	background-image: url(meal.png);
- 	background-repeat: none;
- 	background-size: contain;
- }
-
-.navbar-right {
-	height: 40px;
+	margin-bottom:  0;
 }
-.navbar-items{
-	display: flex;
-	margin-left: 350px;
+
+.profile_image {
+	border-radius:  50%;
 }
-.navbar-itemss {
-	display: flex;
-	margin-left: 525px;
+
+.main-image {
+	height: 940px;
+	background-image: url(meal.png);
+	background-repeat: none;
+	background-size: contain;
+}
+
+header .navbar-left span{
+	font-size: 30px;
+  padding: 10px;
+}
+
+.nav-text {
+	text-align: center;
+}
+
+.title {
+	margin-bottom: 20px;
+	margin-left: 50px;
+}
+
+.roww {
+	margin: 2px 0px;
+}
+
+.example {
+width: 100px;
+height: 50px;
 }
