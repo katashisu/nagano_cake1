@@ -28,7 +28,6 @@ class Public::OrdersController < ApplicationController
         redirect_to new_public_order_path and return
       else
         delivery = Delivery.find(params[:order][:delivery])
-        binding.pry
         session[:order]["postal_code"] = delivery.postal_code
         session[:order]["address"] = delivery.address
         session[:order]["name"] = delivery.name
